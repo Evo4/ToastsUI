@@ -1,0 +1,33 @@
+{
+  "originHash" : "80904c4d3697f0ac58d265a1d5e5b8faf842696bee2f1b12bbdd34f05c0c6566",
+  "pins" : [
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections",
+      "state" : {
+        "revision" : "671108c96644956dddcd89dd59c203dcdb36cec7",
+        "version" : "1.1.4"
+      }
+    },
+    {
+      "identity" : "swift-identified-collections?tab=readme-ov-file",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-identified-collections?tab=readme-ov-file",
+      "state" : {
+        "revision" : "322d9ffeeba85c9f7c4984b39422ec7cc3c56597",
+        "version" : "1.1.1"
+      }
+    },
+    {
+      "identity" : "swiftui-window-overlay",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sunghyun-k/swiftui-window-overlay.git",
+      "state" : {
+        "revision" : "af0adae224dfe27e094bdef19a71fa4cc020cfbb",
+        "version" : "1.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}
