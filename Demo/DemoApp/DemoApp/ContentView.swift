@@ -36,6 +36,10 @@ struct ContentView: View {
                     )
                     presentToast(toast)
                 }
+                Button("Show text only") {
+                    let toast = ToastValue(message: "Text only")
+                    presentToast(toast)
+                }
                 Button("Show Loader") {
                     Task {
                         try await presentToast(message: "Loading") {

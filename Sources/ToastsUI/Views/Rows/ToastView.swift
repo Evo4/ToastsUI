@@ -24,14 +24,12 @@ extension RootView {
         var body: some View {
             content()
                 .frame(height: 48)
-                .fixedSize(horizontal: true, vertical: false)
                 .compositingGroup()
                 .shadow(
                     color: .primary.opacity(isDark ? 0.0 : 0.1),
                     radius: 16,
                     y: 8.0
                 )
-                .frame(maxWidth: .infinity)
         }
     }
 }
@@ -39,9 +37,9 @@ extension RootView {
 // MARK: - Private Layout
 private extension ToastView {
     @ViewBuilder func content() -> some View {
-        ZStack(alignment: .trailing) {
+        ZStack {
             Capsule()
-                .fill(Color.toastBackground)
+                .fill(Color.clear)
             toastContentView()
                 .transition(
                     .modifier(
@@ -58,6 +56,10 @@ private extension ToastView {
                     )
                 )
                 .id(model.message)
+                .background {
+                    Capsule()
+                        .fill(Color.toastBackground)
+                }
         }
     }
 
