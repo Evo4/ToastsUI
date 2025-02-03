@@ -66,6 +66,16 @@ public final class ToastManager: ObservableObject {
         }
     }
 
+    @discardableResult
+    public func appendWithReplacement(_ toast: ToastValue, old oldToast: ToastValue?) -> ToastValue {
+        if let oldToast = oldToast {
+            replaceModels(oldModel: oldToast, with: toast)
+        } else {
+            return append(toast)
+        }
+        return toast
+    }
+
     internal func remove(_ model: ToastValue) {
         log.debug("model: \(model)")
         self.models.remove(id: model.id)
@@ -89,9 +99,11 @@ public final class ToastManager: ObservableObject {
 
 // MARK: - Private Methods
 private extension ToastManager {
-    func replaceModels(oldModel: ToastValue, with updatedModel: ToastValue) {
-        guard let index = self.models.index(id: oldModel.id) else { return }
+    @discardableResult
+    func replaceModels(oldModel: ToastValue, with updatedModel: ToastValue) -> Bool {
+        guard let index = self.models.index(id: oldModel.id) else { return false }
 
         self.models[index] = updatedModel
+        return true
     }
 }

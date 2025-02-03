@@ -17,6 +17,8 @@ struct ContentView: View {
 
     @Environment(\.presentToast) var presentToast
 
+    @State private var oldToast: ToastManager.ToastValue?
+
     var body: some View {
         VStack {
             Group {
@@ -65,6 +67,18 @@ struct ContentView: View {
                         } onFailure: { _ in
                                 .init(message: "Error")
                         }
+                    }
+                }
+                Button("Show self replacing text") {
+                    Task {
+                        for index in 0..<5 {
+                            try await Task.sleep(for: .milliseconds(400))
+                            let toast = ToastValue(message: "Index: \(index)")
+                            self.oldToast = presentToast(toast, old: self.oldToast)
+
+                            await Task.yield()
+                        }
+                        self.oldToast = nil
                     }
                 }
             }
