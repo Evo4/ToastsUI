@@ -38,7 +38,7 @@ private extension ToastRootView {
             if isTop { Spacer() }
         }
         .animation(
-            .spring(duration: removalAnimationDuration),
+            .spring(duration: ToastManager.Settings.removalAnimationDuration),
             value: Tuple(count: manager.models.count, isAppeared: manager.isAppeared)
         )
     }

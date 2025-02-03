@@ -4,6 +4,10 @@ import Utility
 // MARK: - ToastManager
 @MainActor
 public final class ToastManager: ObservableObject {
+    internal enum Settings {
+        static let removalAnimationDuration: Double = 0.3
+    }
+
     // MARK: - ToastPosition
     public enum ToastPosition {
         case top
@@ -30,46 +34,16 @@ public final class ToastManager: ObservableObject {
         isAppeared = true
     }
 
-//    @discardableResult
-//    internal func showInfo(message: String) -> ToastValue {
-//        append(.init(icon: AppAssets.Toast.infoCircle, message: message))
-//    }
-//
-//    @discardableResult
-//    internal func showError(message: String) -> ToastValue {
-//        append(.init(icon: AppAssets.Toast.exclamationMarkTriangle, message: message))
-//    }
-
     @discardableResult
-    internal func append(_ toast: ToastValue) -> ToastValue {
+    public func append(_ toast: ToastValue) -> ToastValue {
         dismissOverlayTask?.cancel()
         dismissOverlayTask = nil
         models.append(toast)
         return toast
     }
 
-    internal func remove(_ model: ToastValue) {
-        log.debug("model: \(model)")
-        self.models.remove(id: model.id)
-        if models.isEmpty {
-            dismissOverlayTask = Task {
-                try await Task.sleep(seconds: removalAnimationDuration)
-                isAppeared = false
-            }
-        }
-    }
-
-    internal func startRemovalTask(for model: ToastValue) async {
-        if let duration = model.duration {
-            do {
-                try await Task.sleep(seconds: duration)
-                remove(model)
-            } catch {}
-        }
-    }
-
     @discardableResult
-    internal func append<V>(
+    public func append<V>(
         message: String,
         task: () async throws -> V,
         onSuccess: (V) -> ToastValue,
@@ -92,11 +66,32 @@ public final class ToastManager: ObservableObject {
         }
     }
 
-    private func replaceModels(oldModel: ToastValue, with updatedModel: ToastValue) {
+    internal func remove(_ model: ToastValue) {
+        log.debug("model: \(model)")
+        self.models.remove(id: model.id)
+        if models.isEmpty {
+            dismissOverlayTask = Task {
+                try await Task.sleep(seconds: Settings.removalAnimationDuration)
+                isAppeared = false
+            }
+        }
+    }
+
+    internal func startRemovalTask(for model: ToastValue) async {
+        if let duration = model.duration {
+            do {
+                try await Task.sleep(seconds: duration)
+                remove(model)
+            } catch {}
+        }
+    }
+}
+
+// MARK: - Private Methods
+private extension ToastManager {
+    func replaceModels(oldModel: ToastValue, with updatedModel: ToastValue) {
         guard let index = self.models.index(id: oldModel.id) else { return }
 
         self.models[index] = updatedModel
     }
 }
-
-internal let removalAnimationDuration: Double = 0.3
