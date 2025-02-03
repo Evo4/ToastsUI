@@ -10,10 +10,12 @@ import ToastsUI
 
 @main
 struct DemoAppApp: App {
+    static let toastManager: ToastManager = .init()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .installToast(position: .top)
+                .installToast(position: .top, manager: Self.toastManager)
         }
     }
 }
