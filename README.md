@@ -1,5 +1,11 @@
 # ToastsUI
 
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://vshymanskyy.github.io/StandWithUkraine/)
+[![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
+![Static Badge](https://img.shields.io/badge/swift-5-flat?style=flat&logo=Swift&color=green)
+![Static Badge](https://img.shields.io/badge/platform-iOS-flat?style=flat&logo=Swift&color=green)
+
+
 > ❗ **Note:** This repo is fork. Click [here](https://github.com/sunghyun-k/swiftui-toasts) to see original library.
 
 A toast notification library for SwiftUI.
