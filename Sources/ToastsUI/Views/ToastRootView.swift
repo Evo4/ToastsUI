@@ -12,10 +12,7 @@ internal struct ToastRootView: View {
     @ObservedObject var manager: ToastManager
 
     // MARK: - Private Properties
-    private var models: IdentifiedArrayOf<ToastManager.ToastValue> {
-        let models = isTop ? IdentifiedArrayOf(uniqueElements: manager.models.reversed()) : manager.models
-        return manager.isAppeared ? models : []
-    }
+    private var models: IdentifiedArrayOf<ToastManager.ToastValue> { manager.isAppeared ? manager.models : [] }
     private var isTop: Bool { manager.position == .top }
 
     // MARK: - Layout
@@ -31,7 +28,7 @@ private extension ToastRootView {
         VStack {
             if !isTop { Spacer() }
             ZStack {
-                ForEach(Array(models.reversed().enumerated()), id: \.element) { index, model in
+                ForEach(Array(models.enumerated()), id: \.element) { index, model in
                     toastView(manager: manager, index: index, model: model)
                 }
             }
