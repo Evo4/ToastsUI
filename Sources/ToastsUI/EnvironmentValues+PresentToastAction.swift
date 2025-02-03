@@ -23,6 +23,11 @@ public struct PresentToastAction {
         manager.append(toast)
     }
 
+    @MainActor
+    public func callAsFunction(_ toast: ToastManager.ToastValue, old oldToast: ToastManager.ToastValue?) -> ToastManager.ToastValue {
+        manager.appendWithReplacement(toast, old: oldToast)
+    }
+
     public func callAsFunction<V>(
         message: String,
         task: () async throws -> V,
