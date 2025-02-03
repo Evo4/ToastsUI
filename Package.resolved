@@ -1,5 +1,5 @@
 {
-  "originHash" : "80904c4d3697f0ac58d265a1d5e5b8faf842696bee2f1b12bbdd34f05c0c6566",
+  "originHash" : "9af9d5ad7cd8e7327c742fa40a1e84933d640f5577882b8efe0afd660fc6d7c4",
   "pins" : [
     {
       "identity" : "swift-collections",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "af0adae224dfe27e094bdef19a71fa4cc020cfbb",
         "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "utility",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Evo4/Utility",
+      "state" : {
+        "branch" : "master",
+        "revision" : "a1956424ba63338e893c518417c145574c854067"
       }
     }
   ],
